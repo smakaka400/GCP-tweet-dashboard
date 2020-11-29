@@ -68,3 +68,4 @@ Improvements that could be made in future iterations include:
 * Updating formatting of tweets and visuals of the dashboard
 * Streamlining the deployment process
 * Limiting the amount of data stored in BigQuery and Cloud Storage
+* Adding logging, monitoring, unit tests
