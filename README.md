@@ -44,7 +44,10 @@ In order to deploy the resources there are a number of prerequisites.
 
 Firstly, you will need a Google Cloud Platform account, and you will need to download the gcloud sdk and store authentication credentials in the base directory of the repo.
 
-You will also need to sign up for a Twitter Developer account via the following link: https://developer.twitter.com/en/apply-for-access
+You will also need to sign up for a Twitter Developer account via the following link: 
+
+https://developer.twitter.com/en/apply-for-access
+
 Once you have an account you will need to store the authorisation credentials in the base directory of the repo. 
 
 You will need Python3.7+ installed on your machine, along with the libraries detailed in requirements.txt.
