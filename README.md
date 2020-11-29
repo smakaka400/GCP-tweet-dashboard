@@ -65,6 +65,6 @@ If you want to stop only the pipelines but maintain the resources, you will have
 ## Improvements
 
 Improvements that could be made in future iterations include:
-* Updating visuals of the dashboard
+* Updating formatting of tweets and visuals of the dashboard
 * Streamlining the deployment process
 * Limiting the amount of data stored in BigQuery and Cloud Storage
