@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 import json
 import apache_beam as beam
-from apache_beam.transforms import window
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.io.gcp.bigquery_tools import parse_table_schema_from_json
 
@@ -62,9 +61,6 @@ def run(argv=None):
         (p | "Read input from PubSub" >>
          beam.io.gcp.pubsub.ReadFromPubSub(subscription=options.subscription) |
          "Parse tweet" >> beam.ParDo(ParseTweets()) |
-         "Windowing for writes" >> beam.WindowInto(
-                    window.FixedWindows(size=60)
-                ) |
          "File load to BigQuery" >> beam.io.gcp.bigquery.WriteToBigQuery(
                     project=options.projectId,
                     dataset=options.datasetId,
@@ -72,7 +68,7 @@ def run(argv=None):
                     schema=make_schema(),
                     additional_bq_parameters=additional_bq_parameters,
                     method="FILE_LOADS",
-                    triggering_frequency=60,
+                    triggering_frequency=1,
                     write_disposition=beam.io.gcp.bigquery.BigQueryDisposition.WRITE_APPEND,
                     create_disposition=beam.io.gcp.bigquery.BigQueryDisposition.CREATE_NEVER)
         )
