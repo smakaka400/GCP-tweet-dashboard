@@ -1,0 +1,2 @@
+tweepy
+apache-beam[gcp]
