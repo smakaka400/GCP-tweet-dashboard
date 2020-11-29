@@ -1,10 +1,27 @@
 import tweepy
 import json
 from google.cloud import pubsub_v1
+import argparse
 
 # Set up PubSub client
-project_id = "tweets-dashboard-297018"
-topic_id = "live_tweets"
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    '--projectId',
+    dest='projectId',
+    help='project ID',
+    required=True,
+    type=str
+)
+parser.add_argument(
+    '--topicId',
+    dest='topicId',
+    help='topic ID',
+    required=True,
+    type=str
+)
+args = parser.parse_args()
+project_id = args.projectId
+topic_id = args.topicId
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_id)
 
