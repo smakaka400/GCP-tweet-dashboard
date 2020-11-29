@@ -6,7 +6,7 @@ set TOPIC=projects/%PROJECT%/topics/%TOPIC_ID%
 set SUBSCRIPTION=projects/%PROJECT%/subscriptions/%TOPIC_ID%
 set DATASET=tweets_data
 set TABLE=tweets
-set GOOGLE_APPLICATION_CREDENTIALS=GCP_creds.json
+set GOOGLE_APPLICATION_CREDENTIALS=../GCP_creds.json
 
 ECHO ========================================
 ECHO DELETING PUBSUB RESOURCES

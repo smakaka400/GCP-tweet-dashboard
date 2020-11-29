@@ -26,7 +26,7 @@ publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_id)
 
 # Variables that contain the credentials to access Twitter API
-with open('tweet_auth.json') as json_file:
+with open('../tweet_auth.json') as json_file:
     auth_creds = json.load(json_file)
 
 CONSUMER_KEY = auth_creds['consumer_key']
