@@ -25,7 +25,7 @@ topic_id = args.topicId
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_id)
 
-# Variables that contains the credentials to access Twitter API
+# Variables that contain the credentials to access Twitter API
 with open('tweet_auth.json') as json_file:
     auth_creds = json.load(json_file)
 
@@ -34,7 +34,8 @@ CONSUMER_SECRET = auth_creds['consumer_secret']
 ACCESS_TOKEN = auth_creds['access_token']
 ACCESS_SECRET = auth_creds['access_token_secret']
 
-# Setup access to Twitter API
+
+# Setup access to Twitter API and create API object
 def connect_to_twitter_OAuth():
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
@@ -42,10 +43,12 @@ def connect_to_twitter_OAuth():
     return api
 
 
-# Create API object
 api = connect_to_twitter_OAuth()
 
 
+# Override the tweepy StreamListener class.
+# Define on_status to push required format of messages to pubsub client
+# Define on_error to disconnect on certain status code
 class StreamListener(tweepy.StreamListener):
     def on_status(self, status):
         payload = {}
@@ -70,9 +73,8 @@ class StreamListener(tweepy.StreamListener):
             return False
 
 
+# Instantiate StreamListener class, authenticate, and stream filtered tweets
 streamListener = StreamListener()
 stream = tweepy.Stream(auth=api.auth, listener=streamListener, tweet_mode='extended')
-
 tags = ["#london"]
-
 stream.filter(track=tags)

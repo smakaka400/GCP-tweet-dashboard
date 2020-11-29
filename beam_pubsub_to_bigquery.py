@@ -5,6 +5,7 @@ from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.io.gcp.bigquery_tools import parse_table_schema_from_json
 
 
+# create table schema object for writing to BigQuery table
 def make_schema():
     schema_str = '{"fields": ' + json.dumps(json.load(open("table_schema.json"))) + '}'
     table_schema = parse_table_schema_from_json(schema_str)
@@ -14,6 +15,7 @@ def make_schema():
 additional_bq_parameters = {'timePartitioning': {'type': 'DAY', 'field': 'timestamp'}}
 
 
+# Parses messages from Pubsub client
 class ParseTweets(beam.DoFn):
     def process(self, element):
         tweet = json.loads(element.decode('utf-8'))
