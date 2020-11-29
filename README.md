@@ -3,6 +3,7 @@
 This repo contains code for streaming filtered tweets in (near) real-time to a dashboard, using resources on Google Cloud Platform.
 
 The Data Studio dashboard can be found here:
+
 https://datastudio.google.com/reporting/36f30b15-8113-4e38-a2d6-4eabd3017555
 
 The repo is organised as follows:
@@ -21,7 +22,7 @@ The aim was to use Data Studio in order to display the tweets. BigQuery is a con
 The architecture diagram is as follows:
 
 ![alt text](https://github.com/smakaka400/GCP-tweet-dashboard/raw/main/architecture_diagram.PNG?raw=true "Architecture Diagram")
-[Text](architecture_diagram.PNG?raw=true "Architecture Diagram")
+
 ## Considerations
 
 The main consideration to take into account was the requirement to stay within Google Cloud's [free tier](https://cloud.google.com/free). The free tier of each tool is as follows:
