@@ -9,7 +9,7 @@ https://datastudio.google.com/reporting/36f30b15-8113-4e38-a2d6-4eabd3017555
 The repo is organised as follows:
 * `notebooks` contains a small demo notebook for obtaining tweets in different ways from Twitter.
 * `python_scripts` contains python scripts for streaming live tweets to Cloud Pub/Sub and for streaming data from Cloud Pub/Sub to BigQuery.
-* `deployment_scripts` contains scripts for creating and deleting the required GCP resources, as well as running the aforementioned python scripts. 
+* `deployment_scripts` contains scripts for deploying the pipeline, as well as deleting the GCP resources (and thus deleting the pipeline).
 
 ## Architecture
 
@@ -56,19 +56,16 @@ Finally, this repo assumes that commands are run from a machine running Windows.
 
 ## Deployment
 
-In order to deploy the pipeline, first ensure you have met the prerequisites detailed above. Then navigate to the deployment_scripts folder.
-
-Run `create_gcp_resources.cmd` in order to create the required GCP resources. Then run `stream_tweets_to_pubsub.cmd` to stream filtered tweets to PubSub, and run `stream_pubsub_to_bigquery.cmd` to stream from PubSub into BigQuery.
+In order to deploy the pipeline, first ensure you have met the prerequisites detailed above. Then navigate to the deployment_scripts folder, and simply run `deploy_pipeline.cmd`. This will create the required GCP resources, and deploy the two streaming python scripts (opening two new terminal windows).
 
 Navigate to the dashboard in order to see the latest tweets with the hashtag #london. The dashboard automatically refreshes the data every 15 minutes, or you can also hit refresh to refresh the data immediately.
 
-To tear down the deployment, run `delete_gcp_resources.cmd`. This will delete the GCP resources, and by extension stop the streaming pipelines. The dashboard will still remain, but will not show anything. 
-If you want to stop only the pipelines but maintain the resources, you will have to interrupt the processes on the command line.
+To tear down the deployment, run `delete_gcp_resources.cmd`. This will delete the GCP resources, and by extension stop the streaming pipeline. The dashboard will still remain, but will not show anything. 
+If you want to stop only the streaming pipeline, but maintain the resources, simply close the two terminal windows that appeared.
 
 ## Improvements
 
 Improvements that could be made in future iterations include:
 * Updating formatting of tweets and visuals of the dashboard
-* Streamlining the deployment process
 * Limiting the amount of data stored in BigQuery and Cloud Storage
 * Adding logging, monitoring, unit tests

@@ -64,4 +64,5 @@ def run(argv=None):
 
 
 if __name__ == '__main__':
+    print("Streaming Pub/Sub messages to BigQuery...")
     run()

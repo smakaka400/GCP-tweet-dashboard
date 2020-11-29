@@ -9,6 +9,9 @@ set TABLE=tweets
 set GOOGLE_APPLICATION_CREDENTIALS=../GCP_creds.json
 
 ECHO ========================================
+ECHO DELETING GCP RESOURCES...
+ECHO ========================================
+ECHO ========================================
 ECHO DELETING PUBSUB RESOURCES
 ECHO ========================================
 cmd /c gcloud pubsub subscriptions delete %SUBSCRIPTION%
@@ -23,3 +26,7 @@ ECHO ========================================
 ECHO DELETING BIGQUERY DATASET
 ECHO ========================================
 cmd /c bq rm -r -f %PROJECT%:%DATASET%
+
+ECHO ========================================
+ECHO GCP RESOURCES DELETED.
+ECHO ========================================

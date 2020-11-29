@@ -74,6 +74,7 @@ class StreamListener(tweepy.StreamListener):
 
 
 # Instantiate StreamListener class, authenticate, and stream filtered tweets
+print("Streaming filtered tweets to Pub/Sub...")
 streamListener = StreamListener()
 stream = tweepy.Stream(auth=api.auth, listener=streamListener, tweet_mode='extended')
 tags = ["#london"]
